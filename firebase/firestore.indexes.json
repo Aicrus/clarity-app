@@ -1,0 +1,174 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "Lessons",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Category",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "isLive",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "audioTeoriaPotenzia",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "audioPraticaPotenzia",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "AscoltiPotenzia",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "audioTeoriaSonno",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "audioPraticaSonno",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "AscoltiSonno",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "audioTeoria",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "audioPratica",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "AscoltiMedita",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "LessonTypeRef",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
+      "collectionGroup": "Lessons",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "Category",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "index",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "fcm_tokens",
+      "fieldPath": "fcm_token",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    }
+  ]
+}

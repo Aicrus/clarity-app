@@ -1,0 +1,183 @@
+{
+  "project_info": {
+    "project_number": "776412439914",
+    "firebase_url": "https://clarity-878d9.firebaseio.com",
+    "project_id": "clarity-878d9",
+    "storage_bucket": "clarity-878d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776412439914:android:c82fe172a89dd96967f113",
+        "android_client_info": {
+          "package_name": "com.MizzUp.clarity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776412439914-o7bga751af3ilp53o9um422fj878ra7r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.MizzUp.clarity",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "776412439914-hc2sgh1h9k5kg3fhaq8emo96gr960uqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv2w4jC6wadcOfKsbeVBTLuqpl2a9lVYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776412439914-hc2sgh1h9k5kg3fhaq8emo96gr960uqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "776412439914-3s0o8tqijsfeaanplemct3ud7h627k74.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.MizzUp.clarity"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776412439914:android:ae57e18882f40b9b67f113",
+        "android_client_info": {
+          "package_name": "com.mizzup.clarity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776412439914-ahojunq06mq66jgshb0hj3tjdnrhl3s3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mizzup.clarity",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "776412439914-hc2sgh1h9k5kg3fhaq8emo96gr960uqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv2w4jC6wadcOfKsbeVBTLuqpl2a9lVYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776412439914-hc2sgh1h9k5kg3fhaq8emo96gr960uqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "776412439914-3s0o8tqijsfeaanplemct3ud7h627k74.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.MizzUp.clarity"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776412439914:android:d78218fe698ae19067f113",
+        "android_client_info": {
+          "package_name": "com.newmanspirit.clarity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776412439914-2sdqrm3o2p785guq2tskk3molq581g2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newmanspirit.clarity",
+            "certificate_hash": "c6197a05a926ce69ba689dc902044420919d9d0f"
+          }
+        },
+        {
+          "client_id": "776412439914-f6qqb70pbfonuppi8ecdt3ugefk9pg71.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newmanspirit.clarity",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "776412439914-g164mpluhd96dvhjdpma4h1kk58bftmh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newmanspirit.clarity",
+            "certificate_hash": "1574538020d72af1ce3116b8888523743599b17e"
+          }
+        },
+        {
+          "client_id": "776412439914-g7s1tpl3172jsdp3fgs5pnibd35bj05r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newmanspirit.clarity",
+            "certificate_hash": "5ea72f56f6e2894b87aece5550fd98e6a1ca1849"
+          }
+        },
+        {
+          "client_id": "776412439914-h062os8om8th1sasctuq6oe12kbo0a0i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newmanspirit.clarity",
+            "certificate_hash": "4506b0f2277dbbd0124bdac80cfa695752a38397"
+          }
+        },
+        {
+          "client_id": "776412439914-rd8ejjmshuorgiu3c8kuufv1j5hggsnt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.newmanspirit.clarity",
+            "certificate_hash": "9998475e11ad5fc212d74452e085eca16af42a63"
+          }
+        },
+        {
+          "client_id": "776412439914-hc2sgh1h9k5kg3fhaq8emo96gr960uqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv2w4jC6wadcOfKsbeVBTLuqpl2a9lVYo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776412439914-hc2sgh1h9k5kg3fhaq8emo96gr960uqe.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "776412439914-3s0o8tqijsfeaanplemct3ud7h627k74.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.MizzUp.clarity"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

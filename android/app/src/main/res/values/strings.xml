@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+    <string name="app_name">Clarity</string>
+    <string name="facebook_app_id">424112654916825</string>
+    <string name="facebook_client_token">00e40b219f24ebf6c81ab4a3b77c2222</string>
+    <string name="fb_login_protocol_scheme">fb424112654916825</string>
+</resources>
