@@ -308,6 +308,12 @@ class FirebaseAuthManager extends AuthManager
         'email-already-in-use' => 'Email già utilizzata da un altro account',
         'INVALID_LOGIN_CREDENTIALS' =>
           'Error: The supplied auth credential is incorrect, malformed or has expired',
+        // Erreurs spécifiques Facebook Login
+        'facebook-config-error' => 'Errore di configurazione del login Facebook. Verifica le impostazioni dell\'app nel Facebook Developer Console.',
+        'facebook-login-failed' => e.message ?? 'Errore durante il login con Facebook. Riprova.',
+        'facebook-app-not-found' => 'Installa l\'app Facebook per continuare',
+        'login-cancelled' => 'Login con Facebook annullato',
+        'login-in-progress' => 'Login già in corso, attendi...',
         // Erreurs spécifiques Apple Sign-In
         'sign_in_canceled' => 'Connessione con Apple annullata',
         'sign_in_failed' => 'Errore di connessione con Apple. Riprova.',

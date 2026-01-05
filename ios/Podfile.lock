@@ -1627,6 +1627,8 @@ DEPENDENCIES:
   - assets_audio_player (from `.symlinks/plugins/assets_audio_player/ios`)
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
   - cloud_functions (from `.symlinks/plugins/cloud_functions/ios`)
+  - FBSDKCoreKit (= 18.0.2)
+  - FBSDKLoginKit (= 18.0.2)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Firebase/Messaging
   - firebase_analytics (from `.symlinks/plugins/firebase_analytics/ios`)
@@ -1818,6 +1820,6 @@ SPEC CHECKSUMS:
   url_launcher_ios: bb13df5870e8c4234ca12609d04010a21be43dfa
   video_player_avfoundation: 7993f492ae0bd77edaea24d9dc051d8bb2cd7c86
 
-PODFILE CHECKSUM: 3dc20138c34f7db0a084149ca06d3c4c25594ede
+PODFILE CHECKSUM: b15190168dd9231a480565c4fe97a4228052328a
 
 COCOAPODS: 1.16.2

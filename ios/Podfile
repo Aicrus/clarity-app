@@ -32,6 +32,12 @@ target 'Runner' do
   pod 'GoogleUtilities'
   use_frameworks! :linkage => :static
 
+  # Facebook SDK - versão 18.0.2 gerenciada pelo flutter_facebook_auth
+  # O flutter_facebook_auth já inclui FBSDKLoginKit, mas especificamos a versão exata
+  # para garantir que o dashboard do Facebook detecte a versão correta
+  pod 'FBSDKCoreKit', '18.0.2'
+  pod 'FBSDKLoginKit', '18.0.2'
+
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 

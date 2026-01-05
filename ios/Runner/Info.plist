@@ -62,6 +62,10 @@
 	<string>00e40b219f24ebf6c81ab4a3b77c2222</string>
 	<key>FacebookDisplayName</key>
 	<string>Clarity</string>
+	<!-- Configurações de Privacidade - Facebook SDK 18.0.2+ -->
+	<!-- Para iOS 14+: Configurar rastreamento de anunciante via código após obter consentimento -->
+	<!-- Para atrasar registro de eventos: configure programaticamente usando 
+	     Settings.setAutoLogAppEventsEnabled(false) e inicialize SDK apenas após consentimento -->
 	<key>FlutterDeepLinkingEnabled</key>
 	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>

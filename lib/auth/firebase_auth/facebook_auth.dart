@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'dart:io' show Platform;
 
 // Flag global para prevenir múltiplas tentativas simultâneas
 bool _facebookLoginInProgress = false;
@@ -25,12 +24,11 @@ Future<UserCredential> facebookSignIn() async {
   try {
     _facebookLoginInProgress = true;
 
-    // FORÇA comportamento nativo APENAS - sem fallback para web/chrome
+    // Usa nativeWithFallback para permitir fallback quando necessário
+    // Isso resolve problemas com Activity Result APIs e configurações do Facebook
     final LoginResult loginResult = await FacebookAuth.instance.login(
       permissions: ['public_profile', 'email'],
-      loginBehavior: Platform.isAndroid 
-          ? LoginBehavior.nativeOnly  // Android: APENAS app nativo
-          : LoginBehavior.nativeWithFallback,  // iOS: app nativo com fallback
+      loginBehavior: LoginBehavior.nativeWithFallback,  // Permite fallback para web se nativo falhar
     );
 
     // Se foi cancelado, retorna erro claro
@@ -41,11 +39,22 @@ Future<UserCredential> facebookSignIn() async {
       );
     }
 
-    // Se falhou no nativeOnly (app não instalado), mostra erro
+    // Se falhou, verifica a mensagem de erro para fornecer feedback mais específico
     if (loginResult.status == LoginStatus.failed) {
+      final errorMessage = loginResult.message ?? 'Erro desconhecido no login do Facebook';
+      
+      // Verifica se o erro é relacionado à implementação/configuração
+      if (errorMessage.contains("can't use Facebook to log into this app") ||
+          errorMessage.contains("issue with its implementation")) {
+        throw FirebaseAuthException(
+          code: 'facebook-config-error',
+          message: 'Erro de configuração do Facebook Login. Verifique as configurações do app no Facebook Developer Console.',
+        );
+      }
+      
       throw FirebaseAuthException(
-        code: 'facebook-app-not-found',
-        message: 'Por favor, instale o aplicativo Facebook para continuar',
+        code: 'facebook-login-failed',
+        message: errorMessage,
       );
     }
 

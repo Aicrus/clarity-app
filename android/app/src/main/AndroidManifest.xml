@@ -24,16 +24,19 @@
         <meta-data android:name="com.facebook.sdk.ClientToken" 
         android:value="@string/facebook_client_token"/>
         
-        <!-- BLOQUEIA Chrome/Navegador - FORÇA uso do app Facebook -->
+        <!-- Configurações de Privacidade - Facebook SDK mais recente -->
+        <!-- Desabilita registro automático de eventos do app (conforme novas diretrizes de privacidade) -->
         <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
         android:value="false"/>
+        <!-- Desabilita coleta de ID de anunciante -->
         <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
         android:value="false"/>
+        <!-- Nota: Para atrasar registro de eventos e inicialização até obter consentimento do usuário,
+             configure programaticamente no código usando FacebookSdk.setAutoLogAppEventsEnabled(false)
+             e FacebookSdk.sdkInitialize() apenas após consentimento -->
         
-        <!-- IMPORTANTE: Desabilita completamente Custom Tabs (Chrome) -->
-        <meta-data 
-            android:name="com.facebook.sdk.login.behavior.web"
-            android:value="false" />
+        <!-- Configuração do Facebook Login: permite fallback para web quando necessário -->
+        <!-- Isso resolve problemas com Activity Result APIs e configurações -->
         <meta-data 
             android:name="com.facebook.sdk.login.behavior.native"
             android:value="true" />
