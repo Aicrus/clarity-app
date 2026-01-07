@@ -1,0 +1,100 @@
+========================================
+FACEBOOK KEY HASHES - CLARITY APP
+========================================
+
+📱 App ID: 424112654916825
+📦 Package Name: com.newmanspirit.clarity
+🔑 Client Token: 00e40b219f24ebf6c81ab4a3b77c2222
+
+========================================
+🔑 KEY HASHES PARA ADICIONAR NO FACEBOOK
+========================================
+
+⚠️ IMPORTANTE: Você precisa adicionar AMBOS os hashes abaixo no Facebook Developer Dashboard!
+
+1️⃣ DEBUG KEY HASH (Desenvolvimento):
+DbN9yZPoDwT/SykSmrbuiBgxUS8=
+
+2️⃣ RELEASE KEY HASH (Produção):
+gzZlmH/aIm93ozmyG92g7mM9DDQ=
+
+========================================
+📋 COMO ADICIONAR NO FACEBOOK DASHBOARD
+========================================
+
+1. Acesse: https://developers.facebook.com/apps/424112654916825/
+2. Vá em: "Configurações do app" → "Básico"
+3. Role até a seção "Android"
+4. Clique em "Hashes chave"
+5. Cole AMBOS os hashes acima (um de cada vez)
+6. Clique em "Salvar alterações"
+
+========================================
+✅ OUTROS HASHES JÁ CONFIGURADOS
+========================================
+
+Estes hashes já estão no dashboard (conforme print):
+- fxPQ32IvEkF7YQaAjNxIGreZAQQ=
+- RQaw8id9u9ASS9rIDPppV1Kjg5c=
+- AxMH01rP4UeJOobGHrac3p4urvY=
+- mZhHXhGtX8IS10RS4IXsoWr0KmM=
+- iaaiAJ/+vZJxYWHwP4V6I02SJSU=
+- XqcvVvbiiUuHrs5VUP2Y5qHKGEk=
+- DbN9yZPoDwT/SykSmrbuiBgxUS8= ✅ (já está!)
+- gzZlmH/aIm93ozmyG92g7mM9DDQ= ⚠️ (PRECISA ADICIONAR!)
+
+========================================
+🚨 AÇÕES CRÍTICAS NO FACEBOOK DASHBOARD
+========================================
+
+1. ✅ ADICIONAR KEY HASH DE RELEASE:
+   - Adicione: gzZlmH/aIm93ozmyG92g7mM9DDQ=
+
+2. ✅ RESOLVER "API ACCESS RESTRICTED":
+   - Clique no banner vermelho "Ver ações necessárias"
+   - Complete todas as ações pendentes
+
+3. ✅ ATUALIZAR GRAPH API PARA v19.0:
+   - Configurações → Avançado
+   - "Atualizar a versão da API" → v19.0
+   - Salvar alterações
+
+4. ✅ COMPLETAR DATA USE CHECKUP:
+   - Caixa de Entrada de alertas (ícone de sino)
+   - "Urgent: Data Use Checkup Recertification Required"
+   - Complete o questionário
+
+5. ✅ ADICIONAR DOMÍNIO:
+   - Configurações → Básico
+   - "Domínios do aplicativo" → clarityapp.it
+
+6. ✅ CONFIGURAR URL DE RETORNO:
+   - Configurações → Avançado
+   - "Autorizar URL de retorno de chamada"
+   - Adicionar: https://clarityapp.it/auth/callback
+
+7. ✅ ATUALIZAR iOS SDK:
+   - Execute: cd ios && pod update FBSDKCoreKit FBSDKLoginKit && pod install
+
+========================================
+🧪 TESTE APÓS CONFIGURAÇÃO
+========================================
+
+1. Desinstale o app completamente do dispositivo
+2. Execute: flutter clean && flutter pub get
+3. Rebuild: flutter build apk --release (Android) ou flutter build ios --release (iOS)
+4. Instale a nova versão
+5. Teste o login com Facebook
+
+========================================
+📞 SUPORTE
+========================================
+
+Se ainda houver problemas após seguir todos os passos:
+1. Verifique os logs: flutter run --verbose
+2. Tire print do erro exato
+3. Verifique se todas as ações no dashboard foram concluídas
+4. Aguarde 5-10 minutos para propagação das mudanças
+
+========================================
+
