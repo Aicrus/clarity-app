@@ -61,6 +61,17 @@ post_install do |installer|
       end
     end
   end
+  
+  # Remover referências aos frameworks Pods que não são necessários com static linkage
+  runner_project_path = File.join(File.dirname(__FILE__), 'Runner.xcodeproj', 'project.pbxproj')
+  if File.exist?(runner_project_path)
+    content = File.read(runner_project_path)
+    # Remove todas as linhas que contêm referências aos frameworks Pods
+    content = content.lines.reject do |line|
+      line.include?('Pods_Runner.framework') || line.include?('Pods_ImageNotification.framework')
+    end.join
+    File.write(runner_project_path, content)
+  end
 end
 
 target 'ImageNotification' do
