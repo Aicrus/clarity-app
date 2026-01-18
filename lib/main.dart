@@ -39,19 +39,8 @@ void main() async {
     await appState.initializePersistedState();
     print('✅ État de l\'app initialisé');
 
-    print('💰 Initialisation de RevenueCat...');
-    try {
-      await revenue_cat.initialize(
-        "appl_PeLkvealipwYlUprpYoMufMBTRF",
-        "goog_FTlNSkdNJmlXlGfyOfCUOHkVFyU",
-        debugLogEnabled: true,
-        loadDataAfterLaunch: false, // Changé à false pour éviter les problèmes de démarrage
-      );
-      print('✅ RevenueCat initialisé');
-    } catch (e, stackTrace) {
-      print('⚠️ Erreur RevenueCat (continuons sans): $e');
-      print('📋 Stack trace RevenueCat: $stackTrace');
-    }
+    // RevenueCat será inicializado após runApp() para não bloquear o início
+    // Isso permite que o Dart VM Service seja descoberto mais rapidamente
 
     runApp(ChangeNotifierProvider(
       create: (context) => appState,
@@ -178,6 +167,24 @@ class _MyAppState extends State<MyApp> {
           print('❌ Erreur dans le JWT token stream: $error');
         },
       );
+
+      // Inicializar RevenueCat de forma assíncrona após o primeiro frame
+      // Isso não bloqueia o início do app e permite que o Dart VM Service seja descoberto
+      SchedulerBinding.instance.addPostFrameCallback((_) async {
+        try {
+          print('💰 Initialisation de RevenueCat (après le premier frame)...');
+          await revenue_cat.initialize(
+            "appl_PeLkvealipwYlUprpYoMufMBTRF",
+            "goog_FTlNSkdNJmlXlGfyOfCUOHkVFyU",
+            debugLogEnabled: true,
+            loadDataAfterLaunch: false,
+          );
+          print('✅ RevenueCat initialisé');
+        } catch (e, stackTrace) {
+          print('⚠️ Erreur RevenueCat (continuons sans): $e');
+          print('📋 Stack trace RevenueCat: $stackTrace');
+        }
+      });
 
       SchedulerBinding.instance.addPostFrameCallback((_) async {
         try {
