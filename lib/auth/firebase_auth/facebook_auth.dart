@@ -1,9 +1,30 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 // Flag global para prevenir múltiplas tentativas simultâneas
 bool _facebookLoginInProgress = false;
+
+/// Gera um nonce criptograficamente seguro para Limited Login
+String generateNonce([int length = 32]) {
+  const charset =
+      '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+  final random = Random.secure();
+  return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+      .join();
+}
+
+/// Retorna o hash SHA256 de uma string
+String sha256ofString(String input) {
+  final bytes = utf8.encode(input);
+  final digest = sha256.convert(bytes);
+  return digest.toString();
+}
 
 Future<UserCredential> facebookSignIn() async {
   if (kIsWeb) {
@@ -42,14 +63,26 @@ Future<UserCredential> facebookSignIn() async {
     // ═══════════════════════════════════════════════════════════════════════
 
     final loginBehavior = LoginBehavior.nativeWithFallback;
-    final loginTracking = LoginTracking.enabled;
+    
+    // IMPORTANTE: Para iOS, usar Limited Login com nonce para compatibilidade com Firebase
+    final bool isIOS = defaultTargetPlatform == TargetPlatform.iOS;
+    final loginTracking = isIOS ? LoginTracking.limited : LoginTracking.enabled;
+    
+    // Gera nonce para iOS Limited Login
+    String? rawNonce;
+    String? hashedNonce;
+    if (isIOS) {
+      rawNonce = generateNonce();
+      hashedNonce = sha256ofString(rawNonce);
+    }
 
-    print('🔵 Facebook Login: Android=AppNativo iOS=SafariWebView tracking=$loginTracking');
+    print('🔵 Facebook Login: Platform=${isIOS ? "iOS" : "Android"} tracking=$loginTracking');
     
     final LoginResult loginResult = await FacebookAuth.instance.login(
       permissions: ['public_profile', 'email'],
       loginBehavior: loginBehavior,
       loginTracking: loginTracking,
+      nonce: hashedNonce, // Passa nonce apenas no iOS
     );
     
     print('🔵 Login Status: ${loginResult.status}');
@@ -98,38 +131,48 @@ Future<UserCredential> facebookSignIn() async {
     }
 
     // ═══════════════════════════════════════════════════════════════════════
-    // IMPORTANTE: iOS pode retornar Limited Login token mesmo com tracking enabled
-    // Precisamos tratar AMBOS os casos: Classic Token e Limited Token (OIDC)
+    // IMPORTANTE: Limited Login (iOS) requer OAuthCredential com nonce
+    // Classic Login (Android) usa FacebookAuthProvider padrão
     // ═══════════════════════════════════════════════════════════════════════
     
     OAuthCredential credential;
     
     if (accessToken.type == AccessTokenType.limited) {
-      // Limited Login (iOS) - usa ID Token (OIDC format)
-      print('🔵 Facebook: Limited Login (ID Token OIDC)');
+      // Limited Login (iOS) - usa OAuthCredential com idToken e rawNonce
+      print('🔵 Facebook: Limited Login (iOS) com nonce');
       
-      // Para Limited Login, precisamos usar o ID token e não o access token
-      // O authenticationToken contém o ID token OIDC
-      final authToken = loginResult.accessToken?.tokenString;
-      if (authToken == null) {
+      if (rawNonce == null) {
         throw FirebaseAuthException(
-          code: 'no-id-token',
-          message: 'ID Token não encontrado para Limited Login',
+          code: 'missing-nonce',
+          message: 'Nonce ausente para Limited Login',
         );
       }
       
-      // Cria credencial com ID token para Limited Login
-      credential = OAuthProvider('facebook.com').credential(
-        idToken: authToken,
+      // Para Limited Login, criar OAuthCredential manualmente com nonce
+      credential = OAuthCredential(
+        providerId: 'facebook.com',
+        signInMethod: 'oauth',
+        idToken: accessToken.tokenString,
+        rawNonce: rawNonce,
       );
     } else {
-      // Classic Login - usa Access Token normal
-      print('🔵 Facebook: Classic Login (Access Token)');
+      // Classic Login (Android) - usa FacebookAuthProvider padrão
+      print('🔵 Facebook: Classic Login (Android)');
       credential = FacebookAuthProvider.credential(accessToken.tokenString);
     }
+    
+    print('🔵 Tentando autenticar no Firebase...');
 
     // Autentica no Firebase com a credencial apropriada
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    try {
+      final userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+      print('🔵 ✅ Autenticação no Firebase bem-sucedida!');
+      return userCredential;
+    } on FirebaseAuthException catch (e) {
+      print('🔵 ❌ Erro na autenticação Firebase: ${e.code} - ${e.message}');
+      // Re-lança o erro para ser tratado pelo gerenciador de autenticação
+      rethrow;
+    }
   } finally {
     // SEMPRE libera o flag, mesmo em caso de erro
     _facebookLoginInProgress = false;

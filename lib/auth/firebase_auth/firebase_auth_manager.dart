@@ -310,6 +310,7 @@ class FirebaseAuthManager extends AuthManager
           'Error: The supplied auth credential is incorrect, malformed or has expired',
         // Erreurs spécifiques Facebook Login
         'facebook-config-error' => 'Errore di configurazione del login Facebook. Verifica le impostazioni dell\'app nel Facebook Developer Console.',
+        'facebook-bad-signature' => 'Errore di configurazione: App Secret del Facebook non configurato correttamente nel Firebase Console. Verifica le impostazioni OAuth nel Firebase.',
         'facebook-login-failed' => e.message ?? 'Errore durante il login con Facebook. Riprova.',
         'facebook-app-not-found' => 'Installa l\'app Facebook per continuare',
         'login-cancelled' => 'Login con Facebook annullato',
