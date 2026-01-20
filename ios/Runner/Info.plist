@@ -30,6 +30,15 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.776412439914-rijpor93mkg9sps2ttkmppc8u68e3m53</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.facebook</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
 				<string>fb424112654916825</string>
 			</array>
 		</dict>
@@ -62,10 +71,12 @@
 	<string>00e40b219f24ebf6c81ab4a3b77c2222</string>
 	<key>FacebookDisplayName</key>
 	<string>Clarity</string>
-	<!-- Configurações de Privacidade - Facebook SDK 18.0.2+ -->
-	<!-- Para iOS 14+: Configurar rastreamento de anunciante via código após obter consentimento -->
-	<!-- Para atrasar registro de eventos: configure programaticamente usando 
-	     Settings.setAutoLogAppEventsEnabled(false) e inicialize SDK apenas após consentimento -->
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<true/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>FlutterDeepLinkingEnabled</key>
 	<true/>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -73,20 +84,10 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
-		<string>fbapi20130214</string>
-		<string>fbapi20130410</string>
-		<string>fbapi20130702</string>
-		<string>fbapi20131010</string>
-		<string>fbapi20131219</string>
-		<string>fbapi20140410</string>
-		<string>fbapi20140116</string>
-		<string>fbapi20150313</string>
-		<string>fbapi20150629</string>
-		<string>fbapi20160328</string>
-		<string>fbauth</string>
 		<string>fb-messenger-share-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>fbauth</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

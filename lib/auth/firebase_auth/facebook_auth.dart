@@ -24,12 +24,35 @@ Future<UserCredential> facebookSignIn() async {
   try {
     _facebookLoginInProgress = true;
 
-    // Usa nativeWithFallback para permitir fallback quando necessário
-    // Isso resolve problemas com Activity Result APIs e configurações do Facebook
+    // ═══════════════════════════════════════════════════════════════════════
+    // IMPORTANTE: Comportamento Oficial do Facebook Login (2024+)
+    // ═══════════════════════════════════════════════════════════════════════
+    // 
+    // 📱 ANDROID: Abre o app nativo do Facebook (se instalado)
+    //    - LoginBehavior.nativeWithFallback funciona perfeitamente
+    // 
+    // 🍎 iOS: SEMPRE usa navegador seguro (ASWebAuthenticationSession/SFSafariViewController)
+    //    - Facebook removeu o suporte para app nativo no iOS desde SDK v6.0+ (2020)
+    //    - Motivo: Requisitos de privacidade da Apple (iOS 14+ ATT)
+    //    - Comportamento oficial usado por Instagram, WhatsApp, Twitter, etc.
+    //    - NÃO É UM BUG - é o método mandatório da Apple e Facebook
+    // 
+    // LoginTracking.enabled: Usa login clássico (token completo para Graph API)
+    // LoginTracking.limited: Login limitado (token JWT, sem Graph API)
+    // ═══════════════════════════════════════════════════════════════════════
+
+    final loginBehavior = LoginBehavior.nativeWithFallback;
+    final loginTracking = LoginTracking.enabled;
+
+    print('🔵 Facebook Login: Android=AppNativo iOS=SafariWebView tracking=$loginTracking');
+    
     final LoginResult loginResult = await FacebookAuth.instance.login(
       permissions: ['public_profile', 'email'],
-      loginBehavior: LoginBehavior.nativeWithFallback,  // Permite fallback para web se nativo falhar
+      loginBehavior: loginBehavior,
+      loginTracking: loginTracking,
     );
+    
+    print('🔵 Login Status: ${loginResult.status}');
 
     // Se foi cancelado, retorna erro claro
     if (loginResult.status == LoginStatus.cancelled) {
@@ -74,8 +97,38 @@ Future<UserCredential> facebookSignIn() async {
       );
     }
 
-    // Cria credencial e autentica no Firebase
-    final credential = FacebookAuthProvider.credential(accessToken.tokenString);
+    // ═══════════════════════════════════════════════════════════════════════
+    // IMPORTANTE: iOS pode retornar Limited Login token mesmo com tracking enabled
+    // Precisamos tratar AMBOS os casos: Classic Token e Limited Token (OIDC)
+    // ═══════════════════════════════════════════════════════════════════════
+    
+    OAuthCredential credential;
+    
+    if (accessToken.type == AccessTokenType.limited) {
+      // Limited Login (iOS) - usa ID Token (OIDC format)
+      print('🔵 Facebook: Limited Login (ID Token OIDC)');
+      
+      // Para Limited Login, precisamos usar o ID token e não o access token
+      // O authenticationToken contém o ID token OIDC
+      final authToken = loginResult.accessToken?.tokenString;
+      if (authToken == null) {
+        throw FirebaseAuthException(
+          code: 'no-id-token',
+          message: 'ID Token não encontrado para Limited Login',
+        );
+      }
+      
+      // Cria credencial com ID token para Limited Login
+      credential = OAuthProvider('facebook.com').credential(
+        idToken: authToken,
+      );
+    } else {
+      // Classic Login - usa Access Token normal
+      print('🔵 Facebook: Classic Login (Access Token)');
+      credential = FacebookAuthProvider.credential(accessToken.tokenString);
+    }
+
+    // Autentica no Firebase com a credencial apropriada
     return await FirebaseAuth.instance.signInWithCredential(credential);
   } finally {
     // SEMPRE libera o flag, mesmo em caso de erro
